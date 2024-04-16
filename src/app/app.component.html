@@ -9,14 +9,34 @@
           placeholder="First Name"
           formControlName="firstname"
         />
+        <small
+          *ngIf="
+            reactiveForm.get('firstname').touched &&
+            reactiveForm.get('firstname').invalid
+          "
+          >*First name is a required field.</small
+        >
       </div>
       <div class="input-box">
         <input type="text" placeholder="Last Name" formControlName="lastname" />
+        <small
+          *ngIf="
+            reactiveForm.get('lastname').touched &&
+            reactiveForm.get('lastname').invalid
+          "
+          >*Last name is a required field.</small
+        >
       </div>
     </div>
 
     <div class="input-box">
       <input type="text" placeholder="Email" formControlName="email" />
+      <small
+        *ngIf="
+          reactiveForm.get('email').touched && reactiveForm.get('email').invalid
+        "
+        >*Enter valid email.</small
+      >
     </div>
 
     <div class="column">
@@ -93,6 +113,15 @@
       </div>
     </div>
 
-    <input type="submit" value="Submit" class="submit-btn" />
+    <input
+      type="submit"
+      value="Submit"
+      class="submit-btn"
+      [disabled]="reactiveForm.invalid"
+      [ngClass]="{
+        'btn-disable': reactiveForm.invalid,
+        'btn-enable': reactiveForm.valid
+      }"
+    />
   </form>
 </section>
