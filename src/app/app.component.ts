@@ -31,14 +31,19 @@ export class AppComponent implements OnInit {
         region: new FormControl(null),
         postal: new FormControl(null, Validators.required),
       }),
-      skills: new FormArray([
-        new FormControl(null, Validators.required),
-        new FormControl(null, Validators.required),
-        new FormControl(null, Validators.required),
-      ]),
+      skills: new FormArray([new FormControl(null, Validators.required)]),
     });
   }
   formSubmitted() {
     console.log(this.reactiveForm);
+  }
+  addSkills() {
+    (<FormArray>this.reactiveForm.get('skills')).push(
+      new FormControl(null, Validators.required)
+    );
+  }
+  deleteSkill(index: number) {
+    const controls = <FormArray>this.reactiveForm.get('skills');
+    controls.removeAt(index);
   }
 }

@@ -136,17 +136,24 @@
       >
     </div>
 
-    <div class="input-box" formArrayName="skills">
-      <input
-        type="text"
-        placeholder="Add skill.."
+    <div class="input-box skills" formArrayName="skills">
+      <h3>Add skills</h3>
+      <div
+        class="column"
         *ngFor="
           let control of reactiveForm.get('skills')['controls'];
           let i = index
         "
-        [formControlName]="i"
-      />
+      >
+        <input type="text" placeholder="Add skill.." [formControlName]="i" />
+        <button type="button" class="btn-add-delete" (click)="deleteSkill(i)">
+          Delete
+        </button>
+      </div>
     </div>
+    <button type="button" class="btn-add-delete" (click)="addSkills()">
+      Add Skills
+    </button>
 
     <input
       type="submit"
