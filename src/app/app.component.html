@@ -136,6 +136,18 @@
       >
     </div>
 
+    <div class="input-box" formArrayName="skills">
+      <input
+        type="text"
+        placeholder="Add skill.."
+        *ngFor="
+          let control of reactiveForm.get('skills')['controls'];
+          let i = index
+        "
+        [formControlName]="i"
+      />
+    </div>
+
     <input
       type="submit"
       value="Submit"

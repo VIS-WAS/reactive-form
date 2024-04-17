@@ -1,6 +1,6 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormArray, FormControl, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -31,6 +31,11 @@ export class AppComponent implements OnInit {
         region: new FormControl(null),
         postal: new FormControl(null, Validators.required),
       }),
+      skills: new FormArray([
+        new FormControl(null, Validators.required),
+        new FormControl(null, Validators.required),
+        new FormControl(null, Validators.required),
+      ]),
     });
   }
   formSubmitted() {
