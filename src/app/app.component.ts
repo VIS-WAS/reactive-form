@@ -25,13 +25,14 @@ export class AppComponent implements OnInit {
       dob: new FormControl(null),
       gender: new FormControl('male'),
       address: new FormGroup({
-        street: new FormControl(null, Validators.required),
+        street: new FormControl('JP Nagar', Validators.required),
         country: new FormControl('India', Validators.required),
         city: new FormControl(null),
         region: new FormControl(null),
-        postal: new FormControl(null, Validators.required),
+        postal: new FormControl(564387, Validators.required),
       }),
-      skills: new FormArray([new FormControl(null, Validators.required)]),
+      skills: new FormArray([new FormControl('Cricket', Validators.required)]),
+      experience: new FormArray([]),
     });
   }
   formSubmitted() {
@@ -45,5 +46,20 @@ export class AppComponent implements OnInit {
   deleteSkill(index: number) {
     const controls = <FormArray>this.reactiveForm.get('skills');
     controls.removeAt(index);
+  }
+  addExperience() {
+    const formGroup = new FormGroup({
+      company: new FormControl(null),
+      position: new FormControl(null),
+      totalExp: new FormControl(null),
+      start: new FormControl(null),
+      end: new FormControl(null),
+    });
+    (<FormArray>this.reactiveForm.get('experience')).push(formGroup);
+  }
+
+  deleteExperience(index: number) {
+    const group = <FormArray>this.reactiveForm.get('experience');
+    group.removeAt(index);
   }
 }

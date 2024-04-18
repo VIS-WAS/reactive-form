@@ -71,6 +71,12 @@
 .address :where(input, .select-box) {
   margin-top: 15px;
 }
+.skill-border {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: #bcbcbc 2px solid;
+  margin-top: 10px;
+}
 
 .experience :where(input, .select-box) {
   margin-top: 15px;

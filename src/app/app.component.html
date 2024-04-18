@@ -136,23 +136,74 @@
       >
     </div>
 
-    <div class="input-box skills" formArrayName="skills">
-      <h3>Add skills</h3>
+    <div class="skill-border">
+      <div class="input-box skills" formArrayName="skills">
+        <h3>Add skills</h3>
+        <div
+          class="column"
+          *ngFor="
+            let control of reactiveForm.get('skills')['controls'];
+            let i = index
+          "
+        >
+          <input type="text" placeholder="Add skill.." [formControlName]="i" />
+          <button type="button" class="btn-add-delete" (click)="deleteSkill(i)">
+            Delete
+          </button>
+        </div>
+      </div>
+
+      <button type="button" class="btn-add-delete" (click)="addSkills()">
+        Add Skills
+      </button>
+    </div>
+    <div class="input-box" formArrayName="experience">
       <div
-        class="column"
+        class="experience"
         *ngFor="
-          let control of reactiveForm.get('skills')['controls'];
+          let group of reactiveForm.get('experience')['controls'];
           let i = index
         "
+        [formGroupName]="i"
       >
-        <input type="text" placeholder="Add skill.." [formControlName]="i" />
-        <button type="button" class="btn-add-delete" (click)="deleteSkill(i)">
-          Delete
+        <label>Experience {{ i + 1 }}</label>
+        <input
+          type="text"
+          placeholder="Company Name"
+          formControlName="company"
+        />
+        <div class="column">
+          <div class="select-box">
+            <select formControlName="position">
+              <option hidden>Position</option>
+              <option>Junior Developer</option>
+              <option>Software Developer</option>
+              <option>Senior Developer</option>
+              <option>Team Lead</option>
+            </select>
+          </div>
+          <input
+            type="number"
+            placeholder="Experience"
+            formControlName="totalExp"
+          />
+        </div>
+        <div class="column">
+          <input type="date" placeholder="Start Date" formControlName="start" />
+          <input type="date" placeholder="End Date" formControlName="end" />
+        </div>
+        <button
+          type="button"
+          class="btn-add-delete"
+          (click)="deleteExperience(i)"
+        >
+          Delete Experience
         </button>
       </div>
     </div>
-    <button type="button" class="btn-add-delete" (click)="addSkills()">
-      Add Skills
+
+    <button type="button" class="btn-add-delete" (click)="addExperience()">
+      Add experience
     </button>
 
     <input
