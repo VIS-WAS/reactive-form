@@ -12,9 +12,23 @@
         <small
           *ngIf="
             reactiveForm.get('firstname').touched &&
-            reactiveForm.get('firstname').invalid
+            reactiveForm.get('firstname').errors?.['required']
           "
           >*First name is a required field.</small
+        >
+        <small
+          *ngIf="
+            reactiveForm.get('firstname').touched &&
+            reactiveForm.get('firstname').errors?.['spaceExist']
+          "
+          >*Space is not allowed in between.</small
+        >
+        <small
+          *ngIf="
+            reactiveForm.get('firstname').touched &&
+            reactiveForm.get('firstname').errors?. ['lessThanMinimun']
+          "
+          >*Please enter minimun 3 character.</small
         >
       </div>
       <div class="input-box">
@@ -206,15 +220,11 @@
       Add experience
     </button>
 
-    <input
-      type="submit"
-      value="Submit"
-      class="submit-btn"
-      [disabled]="reactiveForm.invalid"
-      [ngClass]="{
+    <input type="submit" value="Submit" class="submit-btn" />
+    <!-- [disabled]="reactiveForm.invalid"
+     [ngClass]="{
         'btn-disable': reactiveForm.invalid,
         'btn-enable': reactiveForm.valid
-      }"
-    />
+      }" -->
   </form>
 </section>

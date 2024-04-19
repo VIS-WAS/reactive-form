@@ -2,6 +2,7 @@ import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { FormArray, FormControl, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
+import { CustomValidators } from './validator/noSpaceAllowed.validator';
 
 @Component({
   selector: 'app-root',
@@ -15,8 +16,15 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.reactiveForm = new FormGroup({
-      firstname: new FormControl('Vishwas', Validators.required),
-      lastname: new FormControl('MS', Validators.required),
+      firstname: new FormControl(null, [
+        Validators.required,
+        CustomValidators.noSpaceAllowed,
+        CustomValidators.minLenght,
+      ]),
+      lastname: new FormControl(null, [
+        Validators.required,
+        CustomValidators.noSpaceAllowed,
+      ]),
       email: new FormControl('vishwas.2@gmail.com', [
         Validators.email,
         Validators.required,
