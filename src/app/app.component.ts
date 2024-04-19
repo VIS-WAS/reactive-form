@@ -2,7 +2,7 @@ import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { FormArray, FormControl, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
-import { CustomValidators } from './validator/noSpaceAllowed.validator';
+import { CustomValidators } from './validator/custom.validator';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +29,11 @@ export class AppComponent implements OnInit {
         Validators.email,
         Validators.required,
       ]),
-      username: new FormControl(null),
+      username: new FormControl(
+        null,
+        Validators.required,
+        CustomValidators.checkUserName
+      ),
       dob: new FormControl(null),
       gender: new FormControl('male'),
       address: new FormGroup({
