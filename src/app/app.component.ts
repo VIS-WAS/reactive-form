@@ -14,6 +14,8 @@ export class AppComponent implements OnInit {
 
   reactiveForm: FormGroup;
 
+  formStatus: string = '';
+
   ngOnInit(): void {
     this.reactiveForm = new FormGroup({
       firstname: new FormControl(null, [
@@ -46,6 +48,39 @@ export class AppComponent implements OnInit {
       skills: new FormArray([new FormControl('Cricket', Validators.required)]),
       experience: new FormArray([]),
     });
+
+    //--------//valueChanges() on formControl//----------//
+
+    // this.reactiveForm.get('firstname').valueChanges.subscribe((value) => {
+    //   console.log(value);
+    // });
+
+    //--------//valueChanges() on formControl//----------//
+
+    //--------//valueChanges() on formGroup//----------//
+
+    // this.reactiveForm.valueChanges.subscribe((value) => {
+    //   console.log(value);
+    // });
+
+    //--------//valueChanges() on formGroup//----------//
+
+    //--------//statusChanges() on formControl//----------//
+
+    // this.reactiveForm.get('username').statusChanges.subscribe((value) => {
+    //   console.log(value);
+    // });
+
+    //--------//tatusChanges() on formControl//----------//
+
+    //--------//statusChanges() on formGroup//----------//
+
+    this.reactiveForm.statusChanges.subscribe((status) => {
+      console.log(status);
+      this.formStatus = status;
+    });
+
+    //--------//tatusChanges() on formGroup//----------//
   }
   formSubmitted() {
     console.log(this.reactiveForm);

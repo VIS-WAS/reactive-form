@@ -198,15 +198,19 @@ input.ng-pending {
   border: yellow 2px solid;
 }
 
+/* valueChanes() and statusChanges() */
+
 .container.VALID {
-  border: green 3px solid;
+  border: green 5px solid;
 }
 .container.INVALID {
-  border: red 3px solid;
+  border: red 5px solid;
 }
 .container.PENDING {
-  border: orange 3px solid;
+  border: orange 5px solid;
 }
+
+/* valueChanes() and statusChanges() */
 input.ng-invalid.ng-touched {
   border: red 2px solid;
 }
