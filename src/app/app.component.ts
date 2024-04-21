@@ -16,6 +16,8 @@ export class AppComponent implements OnInit {
 
   formStatus: string = '';
 
+  formData: any = {};
+
   ngOnInit(): void {
     this.reactiveForm = new FormGroup({
       firstname: new FormControl('Vishwas', [
@@ -82,7 +84,35 @@ export class AppComponent implements OnInit {
     //--------//tatusChanges() on formGroup//----------//
   }
   formSubmitted() {
-    console.log(this.reactiveForm);
+    this.formData = this.reactiveForm.value;
+    this.resetForm();
+  }
+  resetForm() {
+    this.reactiveForm.reset();
+    this.reactiveForm.patchValue({
+      gender: 'male',
+      address: {
+        country: 'India',
+      },
+    });
+
+    //   {
+    //   firstname: null,
+    //   lastname: null,
+    //   email: null,
+    //   username: null,
+    //   dob: null,
+    //   gender: 'male',
+    //   address: {
+    //     street: null,
+    //     country: 'India',
+    //     city: null,
+    //     region: null,
+    //     postal: null,
+    //   },
+    //   skills: null,
+    //   experience: null,
+    // });
   }
   addSkills() {
     (<FormArray>this.reactiveForm.get('skills')).push(

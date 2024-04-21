@@ -230,12 +230,47 @@
     <button type="button" class="btn-add-delete" (click)="addExperience()">
       Add experience
     </button>
+    <div class="column">
+      <input type="submit" value="Submit" class="submit-btn" />
 
-    <input type="submit" value="Submit" class="submit-btn" />
-    <!-- [disabled]="reactiveForm.invalid"
+      <!-- [disabled]="reactiveForm.invalid"
      [ngClass]="{
         'btn-disable': reactiveForm.invalid,
         'btn-enable': reactiveForm.valid
       }" -->
+      <input
+        type="button"
+        value="Reset"
+        class="submit-btn"
+        (click)="resetForm()"
+      />
+    </div>
   </form>
+</section>
+
+<section class="user-detail-container">
+  <div class="user-details-container">
+    <div class="user-avatar">
+      <p>
+        {{ formData.firstname?.slice(0, 1)
+        }}{{ formData.lastname?.slice(0, 1) }}
+      </p>
+    </div>
+  </div>
+  <div class="user-details">
+    <div class="user-name">
+      <h2>{{ formData.firstname }} {{ formData.lastname }}</h2>
+    </div>
+    <p><b>Email: </b>{{ formData.email }}</p>
+    <p><b>Username: </b>{{ formData.username }}</p>
+    <p><b>Date of Birth: </b>{{ formData.dob }}</p>
+
+    <div class="user-name">
+      <h3>Address</h3>
+    </div>
+    <span>{{ formData.address?.country }}</span>
+    <span>{{ formData.address?.region }}</span>
+    <span>{{ formData.address?.city }}</span>
+    <span>{{ formData.address?.postal }}</span>
+  </div>
 </section>
